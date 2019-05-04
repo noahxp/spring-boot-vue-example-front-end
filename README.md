@@ -39,6 +39,11 @@ npm install
 npm run serve
 ```
 
+###  Compiles and hot-reloads for development, show detail messages
+```
+vue-cli-service serve --mode development --dashboard
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
