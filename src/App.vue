@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/books">Book List</router-link> |
       <router-link to="/labs">Demo Labs</router-link> |
+      <router-link to="/date-picker">DatePicker Labs</router-link> |
     </div>
     <router-view/>
   </div>

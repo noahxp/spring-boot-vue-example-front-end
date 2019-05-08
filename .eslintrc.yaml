@@ -1,0 +1,22 @@
+---
+
+extends:
+  - plugin:vue/essential
+  - eslint:recommended
+  - google
+
+env:
+  es6: true
+
+rules:
+  max-len:
+    - warn
+    - code: 200
+  no-warning-comments: 0
+#  ignoreComments: true
+  no-console: 0
+
+parserOptions:
+  parser: babel-eslint
+  allowImportExportEverywhere: false
+

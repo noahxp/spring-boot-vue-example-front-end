@@ -1,6 +1,6 @@
 
 <template>
-  <div id="app-1">
+  <div id="my-demo">
     <h1>my labes</h1>
 
     example 1: <span style="color:red">一般綁定</span><br>
@@ -21,9 +21,14 @@
 
     example 4: <span style="color:red">迴圈取值/物件/range</span><br>
     <ol>
-      <li v-for="todo in todos">
-        {{ todo.text }}
+      <li v-for="(item, index) in todos">
+        {{ parentMessage }} - {{ index }} - {{ item.text }}
       </li>
+      <!--
+      <li v-for="(value,name) in todos">
+        {{ value.text }}
+      </li>
+      -->
     </ol>
 
     <hr>
@@ -99,7 +104,7 @@
     v-bind(縮寫「:」)與v-model的分別
     1. v-bind是數據綁定，沒有雙向綁定效果，但不一定在表單元素上使用，任何有效元素上都可以使用 (即一般的 html 屬性)
     2. v-model是雙向綁定，基本上只用在表單元素上；
-    3. 當v-bind和v-model同時用在一個元素上時，它們各自的作用沒變，但v-model優先級更高，而且需區分這個元素是單個的還是一組​​出現的。
+    3. 當v-bind和v-model同時用在一個元素上時，它們各自的作用沒變，但 v-model 優先級更高，而且需區分這個元素是單個的還是一組​​出現的。
     -->
 
 
@@ -118,7 +123,6 @@
     <p></p>
     <p></p>
   </div>
-
 
 
 </template>
@@ -153,104 +157,103 @@
   - filters 和 Computed 應是純粹的輸入輸出，通常不應該在此修改狀態。
 
 - watch:　值改變時，作某件事
-
 -->
+
 <script>
-  // import axios from "axios";
+// import axios from "axios";
 
-  export default {
-    // el: '#app-1',  // 在 views 裡不需指定，全域的才需要 或 非 CLI mode 的才需要
-    data() {
-      return {
-        message: "this is local data",
-        number: 3,
+export default {
+  // el: '#app-1',  // 在 views 裡不需指定，全域的才需要 或 非 CLI mode 的才需要
+  data() {
+    return {
+      message: 'this is local data',
+      number: 3,
 
-        seen: true,
+      seen: true,
 
-        // exmpale 4
-        todos: [
-          { text: 'Learn JavaScript' },
-          { text: 'Learn Vue' },
-          { text: 'Build something awesome' }
-        ],
+      // exmpale 4
+      todos: [
+        {text: 'Learn JavaScript'},
+        {text: 'Learn Vue'},
+        {text: 'Build something awesome'},
+      ],
 
-        textMsg: "this is a vue application.",
+      textMsg: 'this is a vue application.',
 
 
-        rawHtml: ' <span style="color: red">This should be red.</span>',
+      rawHtml: ' <span style="color: red">This should be red.</span>',
 
-        ok: false,
+      ok: false,
 
-        price: 12345678,
+      price: 12345678,
 
-        newNumber: 0,
+      newNumber: 0,
 
-        ajaxResult: '',
+      ajaxResult: '',
 
-        bindText: 'bind text default value',
+      bindText: 'bind text default value',
 
-        modelText: 'model text default value',
-      };
+      modelText: 'model text default value',
+    };
+  },
+
+  // 不管相依的 data 或 props 是否有，都會執行
+  methods: {
+    reverseMessage: function() {
+      this.textMsg = this.textMsg.split('').reverse().join('');
+      this.message = 'OH. myGod.';
     },
-
-    // 不管相依的 data 或 props 是否有，都會執行
-    methods: {
-      reverseMessage: function() {
-        this.textMsg = this.textMsg.split('').reverse().join('');
-        this.message = "OH. myGod.";
-      },
-      testMethods: function() {
-        this.message = "run testMethods";
-        return Date.now();
-      },
-
-
-      ajaxDemo: function() {
-
-        this.axios.get("/apis/books/all/dd")
-        .then(response => {
-          this.ajaxResult = response;
-        }).catch(error => {
-          this.ajaxResult = error;
-        })
-      },
-
-
-      bindAndModelTest: function(v){
-        this.bindText = v.target.value;
-        this.modelText = v.target.value;
-      }
-    },
-
-    // 相依的 data 或 props 有改變時，才會執行
-    computed: {
-      testComputed: function() {
-        this.message = "run testComputed";
-        return Date.now();
-      }
-    },
-
-    // 格式處理，可連續串接
-    filters:{
-      filterDollarSign(price, arg1) {
-        return arg1 + '$' + price;
-      },
-      filterComma(price) {
-        return price.toLocaleString('en-US');
-      }
+    testMethods: function() {
+      this.message = 'run testMethods';
+      return Date.now();
     },
 
 
-    // 監控某個值，並作後面的事情，或呼叫別的函式
-    watch: {
-      // whenever question changes, this function will run
-      number: function (v) {
-        this.newNumber = v;
-      }
+    ajaxDemo: function() {
+      this.axios.get('/apis/books/all/dd')
+          .then((response) => {
+            this.ajaxResult = response;
+          }).catch((error) => {
+            this.ajaxResult = error;
+          });
     },
 
 
-  }
+    bindAndModelTest: function(v) {
+      this.bindText = v.target.value;
+      this.modelText = v.target.value;
+    },
+  },
+
+  // 相依的 data 或 props 有改變時，才會執行
+  computed: {
+    testComputed: function() {
+      this.message = 'run testComputed';
+      return Date.now();
+    },
+  },
+
+  // 格式處理，可連續串接
+  filters: {
+    filterDollarSign(price, arg1) {
+      return arg1 + '$' + price;
+    },
+    filterComma(price) {
+      return price.toLocaleString('en-US');
+    },
+  },
+
+
+  // 監控某個值，並作後面的事情，或呼叫別的函式
+  watch: {
+    // whenever question changes, this function will run
+    number: function(v) {
+      this.newNumber = v;
+    },
+  },
+
+
+};
 
 
 </script>
@@ -258,6 +261,5 @@
 <style scoped>
 
 </style>
-
 
 
