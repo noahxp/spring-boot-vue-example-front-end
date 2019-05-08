@@ -21,8 +21,8 @@
 
     example 4: <span style="color:red">迴圈取值/物件/range</span><br>
     <ol>
-      <li v-for="(item, index) in todos">
-        {{ parentMessage }} - {{ index }} - {{ item.text }}
+      <li v-for="(v,k) in todos" :key="k">
+        {{v.text}}}
       </li>
       <!--
       <li v-for="(value,name) in todos">
@@ -59,7 +59,8 @@
 
     <hr>
     example 10: <span style="color:red">computed & methods</span><br>
-    <button @click="testComputed" v-text="testComputed"></button>
+    <button @click="testComputed" v-text="testComputed"></button><br>
+    testComputed: <input @change="testComputed" v-model="message"><br>
     <button @click="testMethods" v-text="testMethods"></button><br>
     <input type="text" size="50" v-model="message" @change="testComputed">
     <input type="text" size="50" v-model="message" @change="testMethods">
@@ -101,10 +102,10 @@
 
     請輸入來觀查v-bind或v-model <input type="text" size="30" @change="bindAndModelTest">
     <!--
-    v-bind(縮寫「:」)與v-model的分別
-    1. v-bind是數據綁定，沒有雙向綁定效果，但不一定在表單元素上使用，任何有效元素上都可以使用 (即一般的 html 屬性)
-    2. v-model是雙向綁定，基本上只用在表單元素上；
-    3. 當v-bind和v-model同時用在一個元素上時，它們各自的作用沒變，但 v-model 優先級更高，而且需區分這個元素是單個的還是一組​​出現的。
+    v-bind(縮寫「:」與v-model的分別)
+     1.v-bind是數數綁定，沒有雙向綁定效果，但不一定在表素上使用，任何有效元件上都可以使用(如一般的 html 屬性)
+     2.v-model是雙向綁定，基本上只用在表單元素上
+     3.當v-bind和v-model周時用在一個元素上時，他們各自的作用沒變，但v-model優先級更高，而且需區分這個元素是單個的還是一組出現的
     -->
 
 
@@ -139,24 +140,17 @@
   mounted() {}  // Function
   // ...
 }
-
-- lifecycle : created -> mounted ->  updated -> destoryed : https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
-
-- virtual DOM
-
+- lifecycle : created -> mounted -> updated -> destoryed: https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
+- virtaul Dom
 - template 三種寫法
   - <template></template>
-  - options中的 template
-  - options中的 render function
-  實際執行時，<template></template> 會被編譯為 render function
+  - options 中的 template
+  - options 中的 render function
+  實際執行時的 <template></template> 會被編譯為 render function
 
-- filters, computed , methods
-  - filters 主要用於簡單的文字格式處理，需要在應用程式中重複使用。
-  - computed 適合較複雜的資料處理與轉換。
-  - methods 主要用來觸法狀態的改變，可能意味著會觸發 computed 或 filters 重新計算。
-  - filters 和 Computed 應是純粹的輸入輸出，通常不應該在此修改狀態。
-
-- watch:　值改變時，作某件事
+- filters, computed, methods
+  - filters 主要用於簡單的文格式處理,需要在應用程式中重複使用
+  - computed 適合較複雜的資料處理與轉換(並且會監聽 data 裡的值的變化)
 -->
 
 <script>
@@ -228,7 +222,9 @@ export default {
   // 相依的 data 或 props 有改變時，才會執行
   computed: {
     testComputed: function() {
-      this.message = 'run testComputed';
+      // this.message = 'run testComputed';
+      // this.ok = 'run testComputed';
+      // this.message = 'run testComputed';
       return Date.now();
     },
   },

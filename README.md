@@ -1,5 +1,10 @@
 # spring-boot-vue-example-vue-client
 
+## Please read docs , before using VUE  
+- official manual : https://cn.vuejs.org/v2/guide/index.html
+- migration Vue 1.x to 2.x : https://cn.vuejs.org/v2/guide/migration.html
+
+
 ## install Vue
 ### install node & npm
 https://nodejs.org/en/download/ , download the latest LTS version.
@@ -37,11 +42,6 @@ npm install
 ### Compiles and hot-reloads for development
 ```
 npm run serve
-```
-
-###  Compiles and hot-reloads for development, show detail messages
-```
-vue-cli-service serve --mode development --dashboard
 ```
 
 ### Compiles and minifies for production
