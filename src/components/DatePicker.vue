@@ -41,7 +41,7 @@ export default {
   methods: {
     getDate() {
       // console.log(this.defaultDate);
-      this.$emit('childMethod', this.defaultDate);
+      this.$emit('childMethod', this.date);
     },
   },
 
