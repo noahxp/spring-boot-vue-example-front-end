@@ -75,3 +75,10 @@ download from : [https://code.visualstudio.com/](https://code.visualstudio.com/)
 ## Intellij IDEA Ultimate plugin
 - NodeJS
 - Vue.js
+
+---
+Folder structure
+- [public](public) : Any static assets placed in the [public](public) folder will simply be copied and not go through webpack. You need to reference them using absolute paths.
+- [asserts](src/assets) : Assets like images or fonts can be stored here. Webpack can process these (ie. fingerprinting). For many cases, however, we will try to keep most files inside their respective src/features/ folder so that the project is sliced more vertical and split up by "Business Domain". 
+- [components](src/components) : Any cross-cutting [components](src/components) live here. Read about the "src/features/" folder further down to understand the difference between cross-cutting components and components within a feature.
+- [views](src/views) : One Page maps a Vue file and mpas to the settings in View Router
