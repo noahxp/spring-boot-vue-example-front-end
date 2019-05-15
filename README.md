@@ -1,6 +1,6 @@
-# spring-boot-vue-example-vue-client
+# Vue Front-End Example
 
-## Please read docs , before using VUE  
+## read doc before using VUE  
 - official manual : https://cn.vuejs.org/v2/guide/index.html
 - migration Vue 1.x to 2.x : https://cn.vuejs.org/v2/guide/migration.html
 
@@ -62,3 +62,16 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+---
+## VS Code
+download from : [https://code.visualstudio.com/](https://code.visualstudio.com/)
+
+
+### plugin
+- [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)
+- [Preview on Web Server](https://marketplace.visualstudio.com/items?itemName=yuichinukiyama.vscode-preview-server) 
+
+
+## Intellij IDEA Ultimate plugin
+- NodeJS
+- Vue.js
