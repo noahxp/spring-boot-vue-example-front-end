@@ -1,6 +1,6 @@
 <template>
   <div>
-    <date-picker @change="getDate" :inputName="inputName" v-model="date" placeholder="請選擇日期" :type="type" :lang="lang" :clearable="clearable" :editable="editable"></date-picker>
+    <date-picker @change="getDate" :inputClass="['mx-input','mx-datepicker2']" :inputName="inputName" v-model="date" placeholder="請選擇日期" :type="type" :lang="lang" :clearable="clearable" :editable="editable"></date-picker>
   </div>
 
 </template>
@@ -40,14 +40,21 @@ export default {
 
   methods: {
     getDate() {
-      // console.log(this.defaultDate);
-      this.$emit('childMethod', this.date);
+      // console.log(this.date);
+      this.$emit('datePickerParentMethod', this.date);
     },
   },
 
 
 };
 </script>
+
+
+<style>
+.mx-datepicker2  {
+  /*height: 100px;*/
+}
+</style>
 
 
 <!-- https://www.npmjs.com/package/vue2-datepicker -->

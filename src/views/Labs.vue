@@ -17,6 +17,8 @@
 
     example 3: <span style="color:red">條件渲染(conditional rendering)</span><br>
     <p v-if="seen">Now you see me</p>
+    <p v-show="seen">shoe me...</p>
+    seen:<input v-model="seen">
     <hr>
 
     example 4: <span style="color:red">迴圈取值/物件/range</span><br>
@@ -163,7 +165,7 @@ export default {
       message: 'this is local data',
       number: 3,
 
-      seen: true,
+      seen: false,
 
       // exmpale 4
       todos: [

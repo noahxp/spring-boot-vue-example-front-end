@@ -1,6 +1,7 @@
 <template>
   <div class="datepicker">
-    <DatePicker inputName="birthday" :clearable="clearable" :defaultDate="date" @childMethod="parentMethod" />
+    <DatePicker inputName="birthday" :clearable="clearable" :defaultDate="date" @datePickerParentMethod="parentCallBackMethod" />
+    {{date}}
   </div>
 </template>
 
@@ -14,12 +15,12 @@ export default {
   data() {
     return {
       date: new Date(),
-      clearable: false,
+      clearable: true,
     };
   },
 
   methods: {
-    parentMethod(v) {
+    parentCallBackMethod(v) {
       this.date = v;
     },
   },

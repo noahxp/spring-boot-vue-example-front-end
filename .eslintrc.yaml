@@ -11,7 +11,7 @@ env:
 rules:
   max-len:
     - warn
-    - code: 200
+    - code: 250
 
   no-console: 0
 
