@@ -1,9 +1,28 @@
 <template>
   <div>
     <b-modal id="book-edit" centered title="Input Book Data" v-model="modelStatus" @ok="handleOk" @cancel="handleClose" @close="handleClose">
-     <b-form-group>
-
-     </b-form-group>
+      <b-container class="bv-example-row">
+        <b-row>
+          <b-col>Book Name</b-col>
+          <b-col>
+            <b-form-group id="fieldset-1" label-for="bookName" :invalid-feedback="invalidFeedback" :state="state">
+              <b-form-input id="bookName" v-model="bookData.bookName" :state="state" trim></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>ISDN</b-col>
+          <b-col>
+            <b-form-group id="fieldset-2" label-for="isdn" :invalid-feedback="invalidFeedback" :state="state">
+              <b-form-input id="isdn" v-model="bookData.isdn" :state="state" trim></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>Descript</b-col>
+          <b-col>{{bookData.descript}}</b-col>
+        </b-row>
+      </b-container>
     </b-modal>
   </div>
 
@@ -36,35 +55,30 @@ export default {
       this.$emit('bookParentMethod', false);
     },
     handleOk(bvModalEvt) {
-      console.log('ok');
+      this.$http.put('/apis/books',this.bookData).then((response) => {
+        console.log('edit success.');
+      }).catch((error) => {
+        console.error(error);
+      });
+
+
       this.submit();
-      // // Prevent modal from closing
-      // bvModalEvt.preventDefault();
-      // // Trigger submit handler
-      // this.handleSubmit();
     },
 
-    //   checkFormValidity() {
-    //     const valid = this.$refs.form.checkValidity();
-    //     this.nameState = valid ? 'valid' : 'invalid';
-    //     return valid;
-    //   },
-    //   resetModal() {
-    //     this.name = '';
-    //     this.nameState = null;
-    //   },
-  //   handleSubmit() {
-  //     // Exit when the form isn't valid
-  //     if (!this.checkFormValidity()) {
-  //       return;
-  //     }
-  //     // Push the name to submitted names
-  //     this.submittedNames.push(this.name);
-  //     // Hide the modal manually
-  //     this.$nextTick(() => {
-  //       this.$refs.modal.hide();
-  //     });
-  //   },
+    computed: {
+      state() {
+        return this.name.length >= 4 ? true : false;
+      },
+      invalidFeedback() {
+        if (this.name.length > 4) {
+          return '';
+        } else if (this.name.length > 0) {
+          return 'Enter at least 4 characters';
+        } else {
+          return 'Please enter something';
+        }
+      },
+    },
   },
 
 
